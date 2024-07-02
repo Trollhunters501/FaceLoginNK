@@ -12,7 +12,7 @@ script.addEventListener("Enable", function(){
   let messages = data.getList("messages");
   function sendFace(player, msg){
     engPHP.put("player", player.getName());
-    engPHP.put("skindata", player.getSkin().getSkinData());
+    engPHP.put("skindata", player.getSkin().getSkinData().data);
     engPHP.put("messages", msg);
     engPHP.evalFile(manager.getFile("FaceLoginNK.php"));
   }
