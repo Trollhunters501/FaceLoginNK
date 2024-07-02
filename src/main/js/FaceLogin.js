@@ -56,8 +56,24 @@ script.addEventListener("Enable", function(){
       return this;
     },
     rgbToTextFormat: function(r, g, b){
-      let double = Java.type("java.lang.");
-      let differenceList = 
+      let differenceList = [];
+      let Double = java.lang.Double;
+      for each(var value in this.TEXTFORMAT_RGB){
+        let difference = Math.pow(r - value[0], 2) + Math.pow(g - value[1], 2) + Math.pow(b - value[2], 2);
+        differenceList[differenceList.length] = difference;
+      }
+      let key = -1;
+      let smallest = Double.MAX_VALUE;
+      for(var i in differenceList){
+        if(differenceList[i] < smallest){
+          smallest = differenceList[i];
+          key = i;
+        }
+      }
+      return this.TEXTFORMAT_LIST[key];
+    },
+    onRun: function(){
+      
     }
   });
   let engPHP = new PHPEngineNK().build();
