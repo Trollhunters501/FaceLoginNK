@@ -1,12 +1,4 @@
 script.addEventListener("Enable", function(){
-  if(!script.getScriptByName("PHPEngineNK")){
-    load("https://cdn.jsdelivr.net/gh/Trollhunters501/PHPEngineNK/src/Creadores%20Program/PHPEngineNK.js");
-  }
-  if(!script.getScriptByName("PHPEngineNK")){
-    console.error("[FaceLoginNK] PHPEngineNK script could not be found");
-    console.info("§cDisable FaceLoginNK...");
-    return;
-  }
   let TextFormat = Java.type("cn.nukkit.utils.TextFormat");
   const FaceTask = Class(Object, {
     HEX_SYMBOL: "e29688",
@@ -91,16 +83,33 @@ function Bin2Hex(n){if(!checkBin(n))return 0;return parseInt(n,2).toString(16)}
 //Hexadecimal Operations
 function Hex2Bin(n){if(!checkHex(n))return 0;return parseInt(n,16).toString(2)}
 function Hex2Dec(n){if(!checkHex(n))return 0;return parseInt(n,16).toString(10)}
+      let symbol = Hex2Bin(this.HEX_SYMBOL);
+      let strArray = [];
+      let skinData = this.skindata;
+      for(var y = 0; y < 8; y++){
+        for(var x = 1; x < 9; x++){
+          if(strArray[y] == null){
+            strArray[y] = "";
+          }
+          let key = ((64 * y) + 8 + x) * 4;
+          let red = skinData[key] & 0xFF;
+          let green = skinData[key + 1] & 0xFF;
+          let blue = skinData[key + 2] & 0xFF;
+          let Format = this.rgbToTextFormat(red, green, blue);
+          strArray[y] += Format + symbol;
+        }
+      }
+      for(var k in this.messages){
+        strArray[k] += " "+ this.messages[k].replaceAll("{NAME}", this.player);
+      }
+      return strArray.join("\n");
     }
   });
-  let engPHP = new PHPEngineNK().build();
   let data = manager.createConfig(manager.getFile("FaceLoginNK", "messages.yml"), 2);
   let messages = data.getList("messages");
   function sendFace(player, msg){
-    engPHP.put("player", player.getName());
-    engPHP.put("skindata", player.getSkin().getSkinData().data);
-    engPHP.put("messages", msg);
-    engPHP.evalFile(manager.getFile("FaceLoginNK.php"));
+    let task = new FaceTask().constructor(player.getName(), player.getSkin().getSkinData().data, msg);
+    player.sendMessage(task.onRun());
   }
   script.addEventListener("PlayerJoinEvent", function(event){
     sendFace(event.getPlayer(), messages);
