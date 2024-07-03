@@ -1,7 +1,7 @@
 script.addEventListener("Enable", function(){
   let TextFormat = Java.type("cn.nukkit.utils.TextFormat");
   const FaceTask = Class(Object, {
-    HEX_SYMBOL: "e29688",
+    SYMBOL: "\u2588",
     TEXTFORMAT_RGB: [
       [0, 0, 0],
       [0, 0, 170],
@@ -65,18 +65,7 @@ script.addEventListener("Enable", function(){
       return this.TEXTFORMAT_LIST[key];
     },
     onRun: function(){
-      function Hex2Bin(thiz){
-        if(thiz.length % 2 !== 0)return thiz;
-        let bytes = [];
-        for(let i = 0; i < thiz.length - 1; i += 2){
-          let charCode = parseInt(thiz.substring(i, i + 2), 16);
-          bytes.push(charCode);
-        }
-        return String.fromCharCode.apply(String, bytes)
-        .replace(/\x00+$/g, '')
-        .trim();
-      }
-      let symbol = Hex2Bin(this.HEX_SYMBOL);
+      let symbol = this.SYMBOL;
       let strArray = [];
       let skinData = this.skindata;
       for(var y = 0; y < 8; y++){
