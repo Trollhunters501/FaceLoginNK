@@ -92,7 +92,14 @@ script.addEventListener("Enable", function(){
           }
           let key = ((width * y) + maxX + x) * 4;
           let key2 = ((width * y) + maxX + x + uv) * 4;
-          let a = skinData[key2 + 3] & 0xFF;
+          let a = 0;
+          try{
+            a = skinData[key2 + 3] & 0xFF;
+          }catch(error){
+            if(isNaN(a) && !a instanceof java.lang.Byte){
+              a = 0;
+            }
+          }
           let Format;
           if(a >= 127){
             let red = skinData[key2] & 0xFF;
