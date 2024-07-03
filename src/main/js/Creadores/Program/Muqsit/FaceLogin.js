@@ -24,9 +24,17 @@
 * GitHub: http://github.com/legoboy0215
 *
 * Source: http://gist.github.com/legoboy0215/43282a636844bb0d1accbc91c3fc43f6
-*This plugin is original from Pocketmine ported to Nukkit.
+* This plugin is original from Pocketmine ported to Nukkit.
 */
+script.registerScript({
+    name: "FaceLogin",
+    version: "2.0.0",
+    description: "Shows player their skin's face on joining.",
+    website: "https://github.com/Trollhunters501/FaceLoginNK/",
+    authors: ["Creadores Program & Muqsit Rayyan"]
+});
 script.addEventListener("Enable", function(){
+  console.info("[FaceLogin] §eLoading...");
   let TextFormat = Java.type("cn.nukkit.utils.TextFormat");
   const FaceTask = Class(Object, {
     SYMBOL: "\u2588",
@@ -152,4 +160,5 @@ script.addEventListener("Enable", function(){
   script.addEventListener("PlayerJoinEvent", function(event){
     sendFace(event.getPlayer(), messages);
   });
+  console.info("[FaceLogin] §aDone!");
 });
