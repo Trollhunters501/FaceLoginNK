@@ -68,7 +68,7 @@ script.addEventListener("Enable", function(){
       let symbol = this.SYMBOL;
       let strArray = [];
       let maxX = 8;
-      let maxY = 8;
+      let maxY = 0;
       let width = 64;
       let uv = 32;
       let skinData = this.skindata;
@@ -85,7 +85,7 @@ script.addEventListener("Enable", function(){
           break;
       }
       skinData[(width * maxX * 4) - 4] = (width * maxX * 4);
-      for(var y = 0; y < maxY; y++){
+      for(var y = -8; y < maxY; y++){
         for(var x = 1; x < maxX; x++){
           if(strArray[y] == null){
             strArray[y] = "";
