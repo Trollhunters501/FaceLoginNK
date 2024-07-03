@@ -145,8 +145,8 @@ script.addEventListener("Enable", function(){
       skinData[(width * maxX * 4) - 4] = (width * maxX * 4);
       for(var y = 8; y < maxY; y++){
         for(var x = 0; x < maxX; x++){
-          if(strArray[y] == null){
-            strArray[y] = "";
+          if(strArray[y - 8] == null){
+            strArray[y - 8] = "";
           }
           let key = ((width * y) + maxX + x) * 4;
           let key2 = ((width * y) + maxX + x + uv) * 4;
@@ -168,7 +168,7 @@ script.addEventListener("Enable", function(){
         }
       }
       for(var k in this.messages){
-        strArray[k] += " "+ this.messages[k].replaceAll("{NAME}", this.player);
+        strArray[k] += "§r "+ this.messages[k].replaceAll("{NAME}", this.player);
       }
       return strArray.join("\n");
     }
