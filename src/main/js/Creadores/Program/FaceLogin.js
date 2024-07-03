@@ -52,7 +52,7 @@ script.addEventListener("Enable", function(){
       let Double = java.lang.Double;
       for each(var value in this.TEXTFORMAT_RGB){
         let difference = Math.pow(r - value[0], 2) + Math.pow(g - value[1], 2) + Math.pow(b - value[2], 2);
-        differenceList[differenceList.length] = difference;
+        differenceList.push(difference);
       }
       let key = -1;
       let smallest = Double.MAX_VALUE;
@@ -65,24 +65,17 @@ script.addEventListener("Enable", function(){
       return this.TEXTFORMAT_LIST[key];
     },
     onRun: function(){
-      //Useful Functions
-function checkBin(n){return/^[01]{1,64}$/.test(n)}
-function checkDec(n){return/^[0-9]{1,64}$/.test(n)}
-function checkHex(n){return/^[0-9A-Fa-f]{1,64}$/.test(n)}
-function pad(s,z){s=""+s;return s.length<z?pad("0"+s,z):s}
-function unpad(s){s=""+s;return s.replace(/^0+/,'')}
-
-//Decimal operations
-function Dec2Bin(n){if(!checkDec(n)||n<0)return 0;return n.toString(2)}
-function Dec2Hex(n){if(!checkDec(n)||n<0)return 0;return n.toString(16)}
-
-//Binary Operations
-function Bin2Dec(n){if(!checkBin(n))return 0;return parseInt(n,2).toString(10)}
-function Bin2Hex(n){if(!checkBin(n))return 0;return parseInt(n,2).toString(16)}
-
-//Hexadecimal Operations
-function Hex2Bin(n){if(!checkHex(n))return 0;return parseInt(n,16).toString(2)}
-function Hex2Dec(n){if(!checkHex(n))return 0;return parseInt(n,16).toString(10)}
+      function Hex2Bin(thiz){
+        if(thiz.length % 2 !== 0)return thiz;
+        let bytes = [];
+        for(let i = 0; i < thiz.length - 1; i += 2){
+          let charCode = parseInt(thiz.substring(i, i + 2), 16);
+          bytes.push(charCode);
+        }
+        return String.fromCharCode.apply(String, bytes)
+        .replace(/\x00+$/g, '')
+        .trim();
+      }
       let symbol = Hex2Bin(this.HEX_SYMBOL);
       let strArray = [];
       let skinData = this.skindata;
