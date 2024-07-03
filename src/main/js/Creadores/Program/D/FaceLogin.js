@@ -84,15 +84,27 @@ script.addEventListener("Enable", function(){
         default:
           break;
       }
+      skinData[(width * maxX * 4) - 4] = (width * maxX * 4);
       for(var y = 0; y < maxY; y++){
         for(var x = 1; x < maxX; x++){
           if(strArray[y] == null){
             strArray[y] = "";
           }
           let key = ((width * y) + maxX + x) * 4;
-          let red = skinData[key] & 0xFF;
-          let green = skinData[key + 1] & 0xFF;
-          let blue = skinData[key + 2] & 0xFF;
+          let key2 = ((width * y) + maxX + x + uv) * 4;
+          let a = skinData[key2 + 3] & 0xFF;
+          let red;
+          let green;
+          let blue;
+          if (a >= 127) {
+            red = skinData[key2] & 0xFF;
+            green = skinData[key2 + 1] & 0xFF;
+            blue = skinData[key2 + 2] & 0xFF;
+          }else{
+            red = skinData[key] & 0xFF;
+            green = skinData[key + 1] & 0xFF;
+            blue = skinData[key + 2] & 0xFF;
+          }
           let Format = this.rgbToTextFormat(red, green, blue);
             strArray[y] += Format + symbol;
         }
