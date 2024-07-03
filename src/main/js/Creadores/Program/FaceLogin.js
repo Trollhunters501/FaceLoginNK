@@ -65,9 +65,6 @@ script.addEventListener("Enable", function(){
       return this.TEXTFORMAT_LIST[key];
     },
     onRun: function(){
-      function arrayCopy(src, srcIndex, dest, destIndex, length){
-        return Object.assign(dest, Array(destIndex).concat(src.slice(srcIndex, srcIndex + length)));
-      }
       let symbol = this.SYMBOL;
       let strArray = [];
       let maxX = 8;
@@ -87,7 +84,10 @@ script.addEventListener("Enable", function(){
         default:
           break;
       }
-      arrayCopy(skinData, (width * maxX * 4) - 4, skinData, (width * maxX * 4));
+      let Byte = java.lang.Byte;
+      let byte1 = Byte.valueOf(((width * maxX * 4) - 4).toString());
+      let byte2 = Byte.valueOf((width * maxX * 4).toString());
+      skinData = java.lang.Arrays.copyOfRange(skinData, byte1, byte2);
       for(var y = 0; y < maxY; y++){
         for(var x = 1; x < maxX; x++){
           if(strArray[y] == null){
