@@ -1,8 +1,6 @@
 # These are the messages that will be displayed to the right of
 # the player's face. Format:
-# line-number: message
-#
-# line-number must be an integer > 0 and < 9
+# - message
 #
 # Magic constants:
 # {NAME} => Player's name
