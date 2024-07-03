@@ -164,7 +164,7 @@ script.addEventListener("Enable", function(){
             blue = skinData[key + 2] & 0xFF;
           }
           let Format = this.rgbToTextFormat(red, green, blue);
-            strArray[y] += Format + symbol;
+            strArray[y - 8] += Format + symbol;
         }
       }
       for(var k in this.messages){
