@@ -84,10 +84,7 @@ script.addEventListener("Enable", function(){
         default:
           break;
       }
-      let Byte = java.lang.Byte;
-      let byte1 = Byte.valueOf(((width * maxX * 4) - 4).toString());
-      let byte2 = Byte.valueOf((width * maxX * 4).toString());
-      skinData = java.lang.Arrays.copyOfRange(skinData, byte1, byte2);
+      skinData = java.lang.Arrays.copyOfRange(skinData, (width * maxX * 4) - 4, (width * maxX * 4));
       for(var y = 0; y < maxY; y++){
         for(var x = 1; x < maxX; x++){
           if(strArray[y] == null){
