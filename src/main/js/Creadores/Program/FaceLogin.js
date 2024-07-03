@@ -65,20 +65,50 @@ script.addEventListener("Enable", function(){
       return this.TEXTFORMAT_LIST[key];
     },
     onRun: function(){
+      function arrayCopy(src, srcIndex, dest, destIndex, length){
+        return Object.assign(dest, Array(destIndex).concat(src.slice(srcIndex, srcIndex + length)));
+      }
       let symbol = this.SYMBOL;
       let strArray = [];
+      let maxX = 8;
+      let maxY = 8;
+      let width = 64;
+      let uv = 32;
       let skinData = this.skindata;
-      for(var y = 0; y < 8; y++){
-        for(var x = 1; x < 9; x++){
+      switch(skinData.length){
+        case 8192:
+        case 16384:
+          break;
+        case 65536:
+          maxX = maxY = 16;
+          width = 128;
+          uv = 64;
+          break;
+        default:
+          break;
+      }
+      arrayCopy(skinData, (width * maxX * 4) - 4, skinData, (width * maxX * 4));
+      for(var y = 0; y < maxY; y++){
+        for(var x = 1; x < maxX; x++){
           if(strArray[y] == null){
             strArray[y] = "";
           }
-          let key = ((64 * y) + 8 + x) * 4;
-          let red = skinData[key] & 0xFF;
-          let green = skinData[key + 1] & 0xFF;
-          let blue = skinData[key + 2] & 0xFF;
-          let Format = this.rgbToTextFormat(red, green, blue);
-          strArray[y] += Format + symbol;
+          let key = ((width * y) + maxX + x) * 4;
+          let key2 = ((width * y) + maxX + x + uv) * 4;
+          let a = skinData[key2 + 3] & 0xFF;
+          let Format;
+          if(a >= 127){
+            let red = skinData[key2] & 0xFF;
+            let green = skinData[key2 + 1] & 0xFF;
+            let blue = skinData[key2 + 2] & 0xFF;
+            Format = this.rgbToTextFormat(red, green, blue);
+          }else{
+            let red = skinData[key] & 0xFF;
+            let green = skinData[key + 1] & 0xFF;
+            let blue = skinData[key + 2] & 0xFF;
+            Format = this.rgbToTextFormat(red, green, blue);
+          }
+            strArray[y] += Format + symbol;
         }
       }
       for(var k in this.messages){
