@@ -24,7 +24,7 @@
 * GitHub: http://github.com/legoboy0215
 *
 * Source: http://gist.github.com/legoboy0215/43282a636844bb0d1accbc91c3fc43f6
-*
+*This plugin is original from Pocketmine ported to Nukkit.
 */
 script.addEventListener("Enable", function(){
   let TextFormat = Java.type("cn.nukkit.utils.TextFormat");
@@ -95,7 +95,7 @@ script.addEventListener("Enable", function(){
     onRun: function(){
       let symbol = this.SYMBOL;
       let strArray = [];
-      let maxX = 9;
+      let maxX = 8;
       let maxY = 16;
       let width = 64;
       let uv = 32;
