@@ -84,7 +84,6 @@ script.addEventListener("Enable", function(){
         default:
           break;
       }
-      skinData = (java.util.Arrays).copyOfRange(skinData, (width * maxX * 4) - 4, (width * maxX * 4));
       for(var y = 0; y < maxY; y++){
         for(var x = 1; x < maxX; x++){
           if(strArray[y] == null){
@@ -92,14 +91,7 @@ script.addEventListener("Enable", function(){
           }
           let key = ((width * y) + maxX + x) * 4;
           let key2 = ((width * y) + maxX + x + uv) * 4;
-          let a = 0;
-          try{
-            a = skinData[key2 + 3] & 0xFF;
-          }catch(error){
-            if(isNaN(a) && !a instanceof java.lang.Byte){
-              a = 0;
-            }
-          }
+          let a = skinData[key2 + 3] & 0xFF;
           let Format;
           if(a >= 127){
             let red = skinData[key2] & 0xFF;
