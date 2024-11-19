@@ -1,0 +1,8 @@
+{
+    "name": "FaceLogin",
+    "version": "2.1.0",
+    "description": "Shows player their skin's face on joining.",
+    "homepage": "https://github.com/Trollhunters501/FaceLoginNK/",
+    "author": "Creadores Program & Muqsit Rayyan",
+    "main": "js/Creadores/Program/Muqsit/FaceLogin.js"
+}
