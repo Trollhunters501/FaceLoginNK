@@ -1,0 +1,7 @@
+name: FaceLogin
+main: org.CreadoresProgram.Muqsit.FaceLogin
+api: "1.0.0"
+version: 2.1.0
+authors: [Muqsit & Creadores Program]
+website: "https://github.com/Trollhunters501/FaceLoginNK/"
+description: "Shows player their skin's face on joining."
