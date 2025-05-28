@@ -37,7 +37,7 @@ import java.util.List;
 import cn.nukkit.utils.Config;
 public class FaceLogin extends PluginBase implements Listener{
     public Config config;
-    private final class FaceUtils{
+    private static class FaceUtils{
         public static String SYMBOL = "\u2588";
         public static int[][] TEXTFORMAT_RGB = {
             {0, 0, 0},
@@ -92,7 +92,7 @@ public class FaceLogin extends PluginBase implements Listener{
             getTextFormat("MATERIAL_REDSTONE", TextFormat.DARK_RED),
             getTextFormat("MATERIAL_COPPER", TextFormat.GOLD),
             getTextFormat("MATERIAL_GOLD", TextFormat.GOLD),
-            getTextFormat("MATERIAL_EMERALD", TextFormat.TextFormat.GREEN),
+            getTextFormat("MATERIAL_EMERALD", TextFormat.GREEN),
             getTextFormat("MATERIAL_DIAMOND", TextFormat.AQUA),
             getTextFormat("MATERIAL_LAPIS", TextFormat.BLUE),
             getTextFormat("MATERIAL_AMETHYST", TextFormat.LIGHT_PURPLE)
