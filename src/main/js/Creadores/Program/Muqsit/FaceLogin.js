@@ -58,7 +58,8 @@ function enable(){
       [17, 160, 54],
       [44, 186, 168],
       [33, 73, 123],
-      [154, 92, 168]
+      [154, 92, 168],
+      [234, 113, 19]
     ],
     TEXTFORMAT_LIST: [
       TextFormat.BLACK,
@@ -87,7 +88,8 @@ function enable(){
       TextFormat.MATERIAL_EMERALD || TextFormat.GREEN,
       TextFormat.MATERIAL_DIAMOND || TextFormat.AQUA,
       TextFormat.MATERIAL_LAPIS || TextFormat.BLUE,
-      TextFormat.MATERIAL_AMETHYST || TextFormat.LIGHT_PURPLE
+      TextFormat.MATERIAL_AMETHYST || TextFormat.LIGHT_PURPLE,
+      TextFormat.MATERIAL_RESIN || TextFormat.GOLD
     ],
     messages: [],
     player: "",
