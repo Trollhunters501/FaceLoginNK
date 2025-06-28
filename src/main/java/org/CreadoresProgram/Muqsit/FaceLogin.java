@@ -66,7 +66,8 @@ public class FaceLogin extends PluginBase implements Listener{
             {17, 160, 54},
             {44, 186, 168},
             {33, 73, 123},
-            {154, 92, 168}
+            {154, 92, 168},
+            {234, 113, 19}
         };
         public static TextFormat[] TEXTFORMAT_LIST = {
             TextFormat.BLACK,
@@ -95,7 +96,8 @@ public class FaceLogin extends PluginBase implements Listener{
             getTextFormat("MATERIAL_EMERALD", TextFormat.GREEN),
             getTextFormat("MATERIAL_DIAMOND", TextFormat.AQUA),
             getTextFormat("MATERIAL_LAPIS", TextFormat.BLUE),
-            getTextFormat("MATERIAL_AMETHYST", TextFormat.LIGHT_PURPLE)
+            getTextFormat("MATERIAL_AMETHYST", TextFormat.LIGHT_PURPLE),
+            getTextFormat("MATERIAL_RESIN", TextFormat.GOLD)
         };
         private static TextFormat getTextFormat(String name, TextFormat fallback){
             try{
