@@ -159,7 +159,7 @@ public class FaceLogin extends PluginBase implements Listener{
                         blue = skinData[key + 2] & 0xFF;
                     }
                     TextFormat Format = rgbToTextFormat(red, green, blue);
-                    strArray[y - 8] += Format.toString() + SYMBOL;
+                    strArray[y] += Format.toString() + SYMBOL;
                 }
             }
             for(int k = 0; k < messages.size(); k++){
