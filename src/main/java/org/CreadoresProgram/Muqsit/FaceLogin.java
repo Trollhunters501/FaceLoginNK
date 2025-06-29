@@ -123,10 +123,10 @@ public class FaceLogin extends PluginBase implements Listener{
         }
         public static String sendFace(String player, byte[] skinData, List<String>messages){
             int maxX = 8;
-            int maxY = 8;
+            int maxY = 16;
             int width = 64;
             int uv = 32;
-            String[] strArray = new String[Math.max(maxY, messages.size())];
+            String[] strArray = new String[Math.max(maxY - 8, messages.size())];
             switch(skinData.length){
                 case 8192:
                 case 16384:
@@ -140,13 +140,13 @@ public class FaceLogin extends PluginBase implements Listener{
                 break;
             }
             skinData[(width * maxX * 4) - 4] = (byte) (width * maxX * 4);
-            for(int y = 0; y < maxY; y++){
-                for(int x = 1; x < maxX; x++){
-                    if(strArray[y] == null){
-                        strArray[y] = "";
+            for(int y = 8; y < maxY; y++){
+                for(int x = 0; x < maxX; x++){
+                    if(strArray[y - 8] == null){
+                        strArray[y - 8] = "";
                     }
                     int key = ((width * y) + maxX + x) * 4;
-                    int key2 = ((width * y) + maxY + x) * 4;
+                    int key2 = ((width * y) + maxY + x + uv) * 4;
                     int a = skinData[key2 + 3] & 0xFF;
                     int red, green, blue;
                     if(a >= 127){
