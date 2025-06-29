@@ -146,7 +146,7 @@ public class FaceLogin extends PluginBase implements Listener{
                         strArray[y - 8] = "";
                     }
                     int key = ((width * y) + maxX + x) * 4;
-                    int key2 = ((width * y) + maxY + uv + x) * 4;
+                    int key2 = ((width * y) + maxX + x + uv) * 4;
                     int a = skinData[key2 + 3] & 0xFF;
                     int red, green, blue;
                     if(a >= 127){
